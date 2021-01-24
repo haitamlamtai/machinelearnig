@@ -1,0 +1,57 @@
+
+
+---
+title: "Energy compsumption in Europe"
+author: "Julian Zamudio"
+date: "1/23/2021"
+output:  slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+
+
+```
+
+## Creating the data set
+
+The data set is part of the data base of the European Union of statistics explained. 
+You can access the information in the web page : https://ec.europa.eu/eurostat/web/energy/data/database. 
+
+```{r, echo = FALSE}
+knitr::include_graphics('./stastistics.png')
+```
+
+
+
+## The shiny app
+
+THe basic idea of the app is to include interactive  map that allows to the user to see the relative  energy consumption per country from 2009 to 2018.
+Additionally, the app shows the values of all the countries in a table. 
+
+    To include a interactive map is neccessary to use the R code in the server:
+
+          output$mymap <- renderLeaflet({  })
+
+and in the iu.R 
+
+    leafletOutput("mymap")
+
+The calculate the sized circles for the energy comsumption by: 
+
+    addCircles(weight = 1, radius = energy_sub()[,2]/2)
+
+## Funcionality of the app
+
+
+- The user can select one of the years between 2009 and 2018. 
+
+- The gross energy comsumption can be visualized in the map
+
+- In the additional table, the values for each country can be consulted
+
+- the table allows to the user to filter by country name and find the specific energy value
+
+
+
